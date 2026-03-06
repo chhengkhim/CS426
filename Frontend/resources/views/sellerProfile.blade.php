@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seller Profile</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* General Page Layout */
+    body {
+      background: #f7e7d7; /* Light background matching your site */
+      font-family: 'Segoe UI', Arial, sans-serif;
+      color: #2d1c0b;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .profile-page-main {
+      flex-grow: 1;
+      padding: 40px 20px;
+      max-width: 900px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .profile-container {
+      background: #fff; /* Main container background */
+      border-radius: 24px;
+      box-shadow: 0 4px 32px rgba(0,0,0,0.06);
+      padding: 32px 32px 40px 32px;
+      text-align: center;
+    }
+
+    .profile-main-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #b85c38; /* Main title color */
+      margin-bottom: 30px;
+    }
+
+    /* Profile Image Section */
+    .profile-image-section {
+      margin-bottom: 30px;
+    }
+
+    .profile-img {
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid #b85c38;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .profile-img-placeholder {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: #f0d6c2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #b85c38;
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin: 0 auto;
+      border: 4px dashed #b85c38;
+    }
+
+    /* Profile Info Grid */
+    .profile-info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr; /* Two columns */
+      gap: 20px;
+      margin-bottom: 40px;
+      text-align: left;
+    }
+
+    .profile-info-item {
+      background: #fdfaf7;
+      padding: 15px 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+    }
+
+    .info-label {
+      font-weight: 600;
+      color: #b85c38;
+      display: block;
+      margin-bottom: 5px;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .info-value {
+      font-size: 1.1rem;
+      color: #2d1c0b;
+    }
+
+    /* Profile Actions */
+    .profile-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .profile-btn {
+      padding: 12px 25px;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, box-shadow 0.2s;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .profile-btn-edit {
+      background: #b85c38;
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(184,92,56,0.25);
+    }
+    .profile-btn-edit:hover {
+      background: #a14d2a;
+      box-shadow: 0 6px 16px rgba(184,92,56,0.35);
+    }
+
+    .profile-btn-logout {
+      background: #6c757d; /* Muted grey for logout */
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(108,117,125,0.25);
+    }
+    .profile-btn-logout:hover {
+      background: #5a6268;
+      box-shadow: 0 6px 16px rgba(108,117,125,0.35);
+    }
+
+    .profile-btn-delete {
+      background: #dc3545; /* Red for delete */
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(220,53,69,0.25);
+    }
+    .profile-btn-delete:hover {
+      background: #c82333;
+      box-shadow: 0 6px 16px rgba(220,53,69,0.35);
+    }
+
+    .back-btn {
+      padding: 10px 20px;
+      background: #b85c38;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      display: inline-block;
+      transition: background 0.2s;
+    }
+    .back-btn:hover {
+      background: #a14d2a;
+      color: white;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+      .profile-info-grid {
+        grid-template-columns: 1fr; /* Single column on smaller screens */
+      }
+      .profile-container {
+        padding: 25px;
+      }
+      .profile-main-title {
+        font-size: 2rem;
+      }
+      .profile-btn {
+        width: 100%; /* Full width buttons on small screens */
+      }
+    }
+
+    @media (max-width: 480px) {
+      .profile-page-main {
+        padding: 20px 10px;
+      }
+      .profile-container {
+        padding: 20px;
+      }
+      .profile-main-title {
+        font-size: 1.8rem;
+      }
+      .profile-img {
+        width: 150px;
+        height: 150px;
+      }
+      .profile-img-placeholder {
+        width: 150px;
+        height: 150px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="profile-page-main">
+    <a href="seller_Home" class="back-btn">Back to Home</a>
+    
+    <div class="profile-container">
+      <h1 class="profile-main-title">Seller Profile</h1>
+      
+      <div class="profile-image-section">
+        @php $hasImage = false; @endphp
+        @foreach ($seller as $sellerImage)
+          @if ($sellerImage && $sellerImage->seller_profile_img)
+            <img src="{{ asset($sellerImage->seller_profile_img) }}" alt="Seller Image" class="profile-img">
+            @php $hasImage = true; @endphp
+          @endif
+        @endforeach
+        @if (!$hasImage)
+          <div class="profile-img-placeholder">
+            No Image
+          </div>
+        @endif
+      </div>
+      
+      <div class="profile-info-grid">
+        <div class="profile-info-item">
+          <span class="info-label">Shop Name</span>
+          <span class="info-value">{{ Auth::guard('seller')->user()->store_name }}</span>
+        </div>
+        
+        <div class="profile-info-item">
+          <span class="info-label">Seller ID</span>
+          <span class="info-value">{{ Auth::guard('seller')->user()->seller_id }}</span>
+        </div>
+        
+        <div class="profile-info-item">
+          <span class="info-label">Full Name</span>
+          <span class="info-value">{{ Auth::guard('seller')->user()->full_name }}</span>
+        </div>
+        
+        <div class="profile-info-item">
+          <span class="info-label">Email</span>
+          <span class="info-value">{{ Auth::guard('seller')->user()->seller_email }}</span>
+        </div>
+        
+        <div class="profile-info-item">
+          <span class="info-label">Phone Number</span>
+          <span class="info-value">{{ Auth::guard('seller')->user()->phone_number }}</span>
+        </div>
+      </div>
+      
+      <div class="profile-actions">
+        <form action="update_sellerProfile" method="get">
+          @csrf
+          <button type="submit" class="profile-btn profile-btn-edit">Edit Profile</button>
+        </form>
+
+        <form action="logout" method="post">
+          @csrf
+          <button type="submit" class="profile-btn profile-btn-logout">Logout</button>
+        </form>
+        
+        <form action="{{ route('delete_sellerAccount', Auth::guard('seller')->user()->seller_id) }}" method="POST">
+          @csrf
+          <button type="submit" class="profile-btn profile-btn-delete">Delete Account</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

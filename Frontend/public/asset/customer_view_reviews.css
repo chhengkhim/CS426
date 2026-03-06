@@ -1,0 +1,257 @@
+:root {
+  --primary-color: #c86b3c;
+  --secondary-color: #ffe9d1;
+  --background-color: #fff6ee;
+  --text-color: #222;
+  --light-text-color: #555;
+  --border-color: #ddd;
+  --white-color: #fff;
+  --star-color: #ffc107;
+  --success-color: #4caf50;
+  --error-color: #f44336;
+}
+
+body {
+  background: var(--background-color);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+}
+
+.cvr-main-content {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.cvr-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  flex: 1;
+}
+
+.cvr-header {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.cvr-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: background-color 0.2s;
+}
+
+.cvr-back-btn:hover {
+  background-color: rgba(200, 107, 60, 0.1);
+}
+
+.cvr-page-title {
+  color: var(--primary-color);
+  margin: 0;
+  font-size: 2rem;
+}
+
+.cvr-order-info {
+  display: flex;
+  gap: 1rem;
+  color: var(--light-text-color);
+  font-size: 0.9rem;
+}
+
+.cvr-alert {
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+}
+
+.cvr-alert-success {
+  background-color: rgba(76, 175, 80, 0.1);
+  color: var(--success-color);
+  border: 1px solid rgba(76, 175, 80, 0.3);
+}
+
+.cvr-alert-error {
+  background-color: rgba(244, 67, 54, 0.1);
+  color: var(--error-color);
+  border: 1px solid rgba(244, 67, 54, 0.3);
+}
+
+.cvr-products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 1.5rem;
+}
+
+.cvr-product-card {
+  background: var(--white-color);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.cvr-product-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.cvr-product-header {
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.cvr-product-img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+
+.cvr-no-img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f5f5f5;
+  color: var(--light-text-color);
+}
+
+.cvr-product-name {
+  margin: 0;
+  font-size: 1.1rem;
+  color: var(--primary-color);
+  flex: 1;
+}
+
+.cvr-review-section {
+  padding: 1.5rem;
+}
+
+.cvr-review-exists, .cvr-no-review {
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.cvr-review-exists {
+  background-color: var(--secondary-color);
+}
+
+.cvr-no-review {
+  background-color: #f9f9f9;
+  text-align: center;
+}
+
+.cvr-rating {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.cvr-star-filled {
+  color: var(--star-color);
+}
+
+.cvr-star-empty {
+  color: var(--border-color);
+}
+
+.cvr-review-date {
+  margin-left: 1rem;
+  font-size: 0.85rem;
+  color: var(--light-text-color);
+}
+
+.cvr-review-comment {
+  margin: 0.5rem 0 0;
+  line-height: 1.5;
+}
+
+.cvr-review-actions {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.cvr-edit-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: opacity 0.2s;
+}
+
+.cvr-edit-btn:hover {
+  opacity: 0.9;
+}
+
+.cvr-no-review p {
+  margin: 0 0 1rem;
+  color: var(--light-text-color);
+}
+
+.cvr-add-review-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: opacity 0.2s;
+}
+
+.cvr-add-review-btn:hover {
+  opacity: 0.9;
+}
+
+.cvr-footer {
+  background-color: var(--white-color);
+  padding: 1.5rem;
+  text-align: center;
+  margin-top: 2rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.cvr-footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  color: var(--light-text-color);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .cvr-products-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .cvr-product-header {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .cvr-product-name {
+    margin-top: 0.5rem;
+  }
+}

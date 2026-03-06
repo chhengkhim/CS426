@@ -1,0 +1,316 @@
+body {
+    background: #f7e7d7; /* Light background matching your site */
+    font-family: 'Segoe UI', Arial, sans-serif;
+    color: #2d1c0b;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column; /* For sticky footer */
+  }
+  
+  /* Main Content Wrapper */
+  .svo-main-content {
+    flex-grow: 1; /* Allows content to push footer down */
+    padding: 40px 20px;
+    max-width: 1200px; /* Max width for content container */
+    margin: 0 auto;
+    width: 100%;
+  }
+  
+  .svo-container {
+    background: #fff; /* White background for the main section */
+    border-radius: 24px;
+    box-shadow: 0 4px 32px rgba(0,0,0,0.06);
+    padding: 32px 32px 40px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  
+  /* Header */
+  .svo-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #f0d6c2;
+    padding-bottom: 16px;
+    margin-bottom: 16px;
+  }
+  
+  .svo-back-btn {
+    background: #b85c38;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 15px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.18s;
+    display: inline-block;
+  }
+  .svo-back-btn:hover {
+    background: #a14d2a;
+  }
+  
+  .svo-page-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #2d1c0b;
+    margin: 0;
+  }
+  
+  /* Alerts */
+  .svo-alert {
+    padding: 12px 18px;
+    border-radius: 8px;
+    margin-bottom: 18px;
+    font-size: 0.95rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+  .svo-alert-success {
+    background: #d4edda;
+    color: #155724;
+  }
+  .svo-alert-info {
+    background: #cce5ff;
+    color: #004085;
+  }
+  
+  /* Orders Grid */
+  .svo-orders-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 28px;
+  }
+  
+  .svo-order-card {
+    background: #fdfaf7; /* Card background */
+    border: 1px solid #f0d6c2;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .svo-order-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  }
+  
+  .svo-order-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+  }
+  .svo-order-id {
+    font-weight: 700;
+    color: #b85c38;
+    font-size: 1.1rem;
+  }
+  .svo-order-date {
+    font-size: 0.85rem;
+    color: #6d4c2b;
+  }
+  
+  .svo-product-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .svo-product-img-wrap {
+    flex-shrink: 0;
+    width: 90px;
+    height: 90px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #eee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .svo-product-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  
+  .svo-no-img {
+    color: #b85c38;
+    font-size: 0.8rem;
+    text-align: center;
+  }
+  
+  .svo-product-details {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .svo-product-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #2d1c0b;
+    margin: 0;
+  }
+  .svo-product-category, .svo-customer-name, .svo-quantity, .svo-price {
+    font-size: 0.9rem;
+    color: #6d4c2b;
+  }
+  .svo-price {
+    font-weight: 700;
+    color: #b85c38;
+    margin-top: 5px;
+  }
+  
+  .svo-shipping-details {
+    font-size: 0.85rem;
+    color: #6d4c2b;
+    border-top: 1px dashed #eee;
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  /* Status and Actions */
+  .svo-status-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .svo-status-label {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #2d1c0b;
+  }
+  .svo-status {
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: capitalize;
+  }
+  
+  /* Status Colors (matching previous conventions where possible, or adapting) */
+  .svo-status-pending { background-color: #fff3cd; color: #856404; }
+  .svo-status-shipped { background-color: #cce5ff; color: #004085; }
+  .svo-status-delivered { background-color: #d4edda; color: #155724; }
+  .svo-status-cancelled { background-color: #f8d7da; color: #721c24; }
+  .svo-status-received { background-color: #e2e3e5; color: #383d41; }
+  
+  
+  .svo-status-form {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .svo-select-status {
+    padding: 8px 10px;
+    border-radius: 8px;
+    border: 1px solid #b85c38;
+    font-size: 0.95rem;
+    color: #2d1c0b;
+    background-color: #fdfaf7;
+    cursor: pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+  .svo-select-status:focus {
+    outline: none;
+    border-color: #a14d2a;
+    box-shadow: 0 0 0 3px rgba(184,92,56,0.2);
+  }
+  
+  .svo-btn { /* Generic button style for this page */
+    background: #5bc0de; /* Info/Action color */
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 15px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.18s, box-shadow 0.18s;
+    display: inline-block;
+    text-align: center;
+  }
+  .svo-btn:hover {
+    background: #269abc;
+  }
+  
+  .svo-btn-view-reviews {
+    background: #b85c38; /* Use accent color for reviews button */
+    margin-top: 5px;
+  }
+  .svo-btn-view-reviews:hover {
+    background: #a14d2a;
+  }
+  
+  
+  /* Footer (from styles.css, assumed to be included) */
+  /* This section is expected to be handled by the /asset/styles.css import */
+  
+  
+  /* Responsive Adjustments */
+  @media (max-width: 900px) {
+    .svo-main-content {
+      padding: 20px 15px;
+    }
+    .svo-container {
+      padding: 25px;
+    }
+    .svo-orders-grid {
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .svo-page-title {
+      font-size: 1.8rem;
+    }
+    .svo-product-img-wrap {
+      width: 70px;
+      height: 70px;
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .svo-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .svo-page-title {
+      font-size: 1.5rem;
+    }
+    .svo-orders-grid {
+      grid-template-columns: 1fr; /* Single column on small screens */
+      gap: 15px;
+    }
+    .svo-product-info {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .svo-product-details {
+      width: 100%;
+    }
+    .svo-status-actions {
+      align-items: flex-start;
+    }
+    .svo-select-status {
+      width: 100%;
+    }
+    .svo-btn-view-reviews {
+      width: 100%;
+    }
+  }

@@ -1,0 +1,156 @@
+/* General Page Layout */
+body {
+  background: #f7e7d7; /* Light background matching your site */
+  font-family: 'Segoe UI', Arial, sans-serif;
+  color: #2d1c0b;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.update-profile-page-main {
+  flex-grow: 1;
+  padding: 40px 20px;
+  max-width: 700px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.update-profile-container {
+  background: #fff; /* Main container background */
+  border-radius: 24px;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.06);
+  padding: 32px 32px 40px 32px;
+}
+
+.update-profile-main-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #b85c38; /* Main title color */
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* Alerts */
+.update-profile-alert {
+  padding: 12px 18px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-size: 0.95rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.update-profile-alert-danger {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.update-profile-alert-danger ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Form Styles */
+.update-profile-form .form-group {
+  margin-bottom: 20px;
+}
+
+.update-profile-form .form-label {
+  display: block;
+  font-weight: 600;
+  color: #2d1c0b;
+  margin-bottom: 8px;
+  font-size: 1rem;
+}
+
+.update-profile-form .form-control,
+.update-profile-form .form-control-file {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #f0d6c2;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #2d1c0b;
+  background-color: #fdfaf7;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.update-profile-form .form-control:focus,
+.update-profile-form .form-control-file:focus {
+  outline: none;
+  border-color: #b85c38;
+  box-shadow: 0 0 0 3px rgba(184,92,56,0.2);
+}
+
+.update-profile-form .form-control-file {
+  padding: 10px 0;
+}
+
+.update-profile-form .form-text {
+  font-size: 0.85rem;
+  color: #6d4c2b;
+  margin-top: 5px;
+  display: block;
+}
+
+.update-profile-form .form-text a {
+  color: #b85c38;
+  text-decoration: none;
+}
+
+.update-profile-form .form-text a:hover {
+  text-decoration: underline;
+}
+
+.form-action-group {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.update-profile-btn {
+  background: #b85c38;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 15px 30px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+  width: 100%;
+  max-width: 300px;
+}
+
+.update-profile-btn:hover {
+  background: #a14d2a;
+  box-shadow: 0 6px 16px rgba(184,92,56,0.35);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .update-profile-container {
+    padding: 25px;
+  }
+  .update-profile-main-title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .update-profile-page-main {
+    padding: 20px 10px;
+  }
+  .update-profile-container {
+    padding: 20px;
+  }
+  .update-profile-main-title {
+    font-size: 1.8rem;
+  }
+  .update-profile-btn {
+    font-size: 1rem;
+    padding: 12px 25px;
+  }
+} 

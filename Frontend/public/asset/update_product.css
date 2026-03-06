@@ -1,0 +1,264 @@
+body {
+    background: #f7e7d7; /* Light background matching your site */
+    font-family: 'Segoe UI', Arial, sans-serif;
+    color: #2d1c0b;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column; /* Allows footer to stick to bottom */
+  }
+  
+  /* Header for Update Product Page */
+  .up-header {
+    background: #fff;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+    padding: 20px 0;
+  }
+  
+  .up-header-content {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+  }
+  
+  .up-back-btn {
+    background: #b85c38;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 15px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.18s;
+  }
+  .up-back-btn:hover {
+    background: #a14d2a;
+  }
+  
+  .up-page-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #2d1c0b;
+    margin: 0;
+  }
+  
+  /* Main Content Area */
+  .up-main-content {
+    flex-grow: 1; /* Allows main content to take available vertical space */
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align to top of container */
+  }
+  
+  .up-form-container {
+    background: #fff;
+    border-radius: 24px;
+    box-shadow: 0 4px 32px rgba(0,0,0,0.06);
+    padding: 40px;
+    max-width: 600px; /* Constrain form width */
+    width: 100%;
+  }
+  
+  .up-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Space between form groups */
+  }
+  
+  .up-form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .up-label {
+    font-size: 1rem;
+    color: #2d1c0b;
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  
+  .up-input,
+  .up-select,
+  .up-textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #f0d6c2; /* Light border */
+    border-radius: 10px;
+    font-size: 1rem;
+    color: #2d1c0b;
+    background-color: #fdfaf7; /* Slightly off-white background */
+    transition: border-color 0.18s, box-shadow 0.18s;
+    -webkit-appearance: none; /* Remove default styling for selects */
+    -moz-appearance: none;
+    appearance: none;
+  }
+  
+  .up-input:focus,
+  .up-select:focus,
+  .up-textarea:focus {
+    outline: none;
+    border-color: #b85c38;
+    box-shadow: 0 0 0 3px rgba(184,92,56,0.2);
+  }
+  
+  .up-textarea {
+    resize: vertical; /* Allow vertical resizing */
+    min-height: 100px;
+  }
+  
+  /* Custom file input styling */
+  .up-file-input {
+    /* Hide default file input button */
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    cursor: pointer;
+    background-color: #fdfaf7;
+    border: 1px solid #f0d6c2;
+    border-radius: 10px;
+    padding: 12px 15px;
+    color: #6d4c2b;
+  }
+  
+  .up-file-input::before {
+    content: 'Choose File';
+    display: inline-block;
+    background: #b85c38;
+    color: #fff;
+    border-radius: 6px;
+    padding: 8px 12px;
+    margin-right: 15px;
+    cursor: pointer;
+    transition: background 0.18s;
+  }
+  
+  .up-file-input:hover::before {
+    background: #a14d2a;
+  }
+  
+  .up-file-input:focus-within::before {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(184,92,56,0.2);
+  }
+  
+  /* Visually hide the actual input, but keep it accessible */
+  .up-file-input input[type="file"] {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+  }
+  
+  /* Current Image and No Image display */
+  .up-image-group {
+    align-items: center; /* Center image and label */
+  }
+  
+  .up-current-img {
+    max-width: 150px; /* Adjust size as needed */
+    height: auto;
+    border-radius: 10px;
+    margin-top: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  
+  .up-no-img {
+    color: #b85c38;
+    font-size: 0.95rem;
+    margin-top: 10px;
+    background: #f7e7d7;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+  }
+  
+  
+  /* Submit Button */
+  .up-submit-btn {
+    background: #4CAF50; /* Green submit button */
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 15px 25px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.18s, box-shadow 0.18s;
+    align-self: flex-end; /* Align to the right */
+    margin-top: 10px;
+    box-shadow: 0 4px 12px rgba(76,175,80,0.2);
+  }
+  
+  .up-submit-btn:hover {
+    background: #43a047;
+    box-shadow: 0 6px 16px rgba(76,175,80,0.3);
+  }
+  
+  /* Alerts */
+  .up-alert {
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+    font-size: 0.95rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+  
+  .up-alert-danger {
+    background: #f8d7da;
+    color: #721c24;
+  }
+  
+  .up-alert-danger ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .up-alert-danger li {
+    margin-bottom: 5px;
+  }
+  
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .up-header-content {
+      flex-direction: column;
+      text-align: center;
+      gap: 15px;
+    }
+    .up-page-title {
+      font-size: 1.8rem;
+    }
+    .up-form-container {
+      padding: 25px;
+      margin: 0 15px;
+    }
+    .up-submit-btn {
+      align-self: stretch; /* Full width button on smaller screens */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .up-form-container {
+      padding: 20px;
+    }
+    .up-page-title {
+      font-size: 1.5rem;
+    }
+    .up-input, .up-select, .up-textarea, .up-file-input {
+      padding: 10px 12px;
+      font-size: 0.9rem;
+    }
+    .up-current-img {
+      max-width: 100px;
+    }
+  }
