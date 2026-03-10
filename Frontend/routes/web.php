@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/login');
 });
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth:seller,customer');
@@ -24,9 +24,9 @@ Route::middleware('guest:seller,customer')->group(function () {
     Route::get('/register', [sellerController::class, 'register'])->name('register');
 
     Route::post('/process_Registers_seller', [sellerController::class, 'process_Registers_seller']);
-    
+
     Route::post('/process_registers_customer', [customersController::class, 'process_registers_customer']);
-    
+
 });
 
 
@@ -36,9 +36,9 @@ Route::middleware('auth:seller')->controller(productController::class)->group(fu
     Route::get('/addProduct', 'addProduct')->name('addProduct');
 
     Route::post('/process_addProduct', 'process_addProduct');
-    
+
     Route::get('/updateProduct/{product_id}', 'updateProduct');
-    
+
     Route::post('/process_updateProduct', 'process_updateProduct')->name('process_updateProduct');
 
     Route::post('/deleteProduct/{product_id}', 'deleteProduct')->name('deleteProduct');
@@ -94,7 +94,7 @@ Route::middleware('auth:customer')->controller(customersController::class)->grou
 });
 
 
-Route::middleware('auth:customer')->controller(orderController::class)->group(function () {    
+Route::middleware('auth:customer')->controller(orderController::class)->group(function () {
     Route::get('/orderNow/{product_id}', 'orderNow_view')->name('orderNow');
 
     Route::post('/orderNow_process', 'orderNow_process')->name('orderNow_process');
@@ -118,12 +118,12 @@ Route::middleware('auth:customer')->controller(orderController::class)->group(fu
 
     // Review routes
     Route::get('showReviewForm/{order_id}/{product_id}', 'showReviewForm')->name('order.review');
-    
+
     Route::post('submitReview/{order_id}', 'submitReview')->name('order.submit_review');
-    
+
 });
 
-Route::middleware('auth:seller')->controller(orderController::class)->group(function () {    
+Route::middleware('auth:seller')->controller(orderController::class)->group(function () {
     Route::get('/seller_viewOrder', 'seller_viewOrder')->name('seller_viewOrder');
 
     Route::put('/orders/update-status/{order_id}', 'updateOrderStatus')
