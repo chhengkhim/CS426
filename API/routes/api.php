@@ -21,8 +21,8 @@ Route::middleware('auth:sanctum')->group(function () {
         // Route::delete('/', 'App\\Http\\Controllers\\sellerController@delete_sellerAccount');
 
         Route::get('/products', 'App\\Http\\Controllers\\productController@listSellerProducts');
-        Route::post('/products', 'App\\Http\\Controllers\\productController@addProduct');
-        Route::put('/products/{id}', 'App\\Http\\Controllers\\productController@updateProduct');
+        Route::post('/products', 'App\\Http\\Controllers\\productController@process_addProduct');
+        Route::put('/products/{id}', 'App\\Http\\Controllers\\productController@process_updateProduct');
         Route::delete('/products/{id}', 'App\\Http\\Controllers\\productController@deleteProduct');
 
         Route::get('/orders', 'App\\Http\\Controllers\\orderController@seller_viewOrder');
@@ -47,14 +47,14 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::delete('/cart/{item_id}', 'App\\Http\\Controllers\\customersController@process_removeItemFromCart');
         Route::post('/checkout', 'App\\Http\\Controllers\\orderController@placeOrderFromCart');
 
-        Route::post('/orders', 'App\\Http\\Controllers\\orderController@orderNow_process');
+        Route::post('/orders', 'App\\Http\\Controllers\\orderController@placeOrderFromCart');
         Route::get('/orders', 'App\\Http\\Controllers\\orderController@customer_viewOrder');
         
         Route::post('/messages/seller/{seller_id}', 'App\\Http\\Controllers\\customersController@processSendMessageToSeller');
     });
 
     // --- Shared Order & Review Routes ---
-    Route::put('/orders/{id}/status', 'App\\Http\\Controllers\\orderController@updateOrderStatus');
+    // Route::put('/orders/{id}/status', 'App\\Http\\Controllers\\orderController@updateOrderStatus');
     Route::get('/orders/{order_id}/reviews', 'App\\Http\\Controllers\\Api\\ReviewController@index');
     // Route::post('/orders/{order_id}/reviews', 'App\\Http\\Controllers\\Api\\ReviewController@store'); // Old route commented out
     Route::post('/v1/orders/{order_id}/reviews', 'App\\Http\\Controllers\\Api\\V1\\ReviewController@store'); // Old v1 route

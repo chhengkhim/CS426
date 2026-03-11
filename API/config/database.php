@@ -93,6 +93,30 @@ return [
             'search_path' => 'public',
             'sslmode' => 'prefer',
         ],
+        // 'pgsql' => [
+        //     'driver' => 'pgsql',
+        //     'read' => [
+        //         'host' => [
+        //             env('DB_READ1_HOST', '157.230.45.176'),
+        //             env('DB_READ2_HOST', '143.198.88.115'),
+        //         ],
+        //     ],
+        //     'write' => [
+        //         'host' => [
+        //             env('DB_WRITE_HOST', '178.128.103.122'),
+        //         ],
+        //     ],
+        //     'sticky' => true,
+        //     'port' => env('DB_PORT', '5432'),
+        //     'database' => env('DB_DATABASE', 'handcraft'),
+        //     'username' => env('DB_USERNAME', 'db_admin'),
+        //     'password' => env('DB_PASSWORD', ''),
+        //     'charset' => env('DB_CHARSET', 'utf8'),
+        //     'prefix' => '',
+        //     'prefix_indexes' => true,
+        //     'search_path' => 'public',
+        //     'sslmode' => 'prefer',
+        // ],
 
         'sqlsrv' => [
             'driver' => 'sqlsrv',

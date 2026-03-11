@@ -43,7 +43,7 @@ class sellerController extends Controller
 
         return redirect('/Home')->with('success', 'Registration successful, please login.');
     }
-    */
+     */
     //the function below is used to register a new customer similar to the commented one above
     public function process_Registers_seller(Request $register)
     {
@@ -119,7 +119,7 @@ class sellerController extends Controller
             return back()->withErrors(['email' => 'Please check your email or full name again.']);
         }
     }
-    */
+     */
 
 
     public function logout(Request $request)
@@ -212,6 +212,7 @@ class sellerController extends Controller
     public function processSendMessageToCustomer(Request $request, $customer_id)
     {
         $validated = $request->validate([
+            'subject' => 'required|string|max:255',
             'message' => 'required|string|max:500',
         ]);
 
@@ -219,22 +220,20 @@ class sellerController extends Controller
 
         try {
             DB::table('message')->insert([
-                'customer_id' => $customer_id,
-                'seller_id' => $seller_id,
-                'messages' => $validated['message'],
-                'is_read' => 0,
-                'sender_type' => 'seller',
-                'created_at' => now(),
-                'updated_at' => now(),
+                'customer_id'         => $customer_id,
+                'seller_id'           => $seller_id,
+                'recipient_seller_id' => $seller_id,
+                'subject'             => $validated['subject'],
+                'messages'            => $validated['message'],
+                'is_read'             => false,
+                'sender_type'         => 'seller',
+                'created_at'          => now(),
+                'updated_at'          => now(),
             ]);
 
-            return redirect()->route('sellerMessageCustomer', ['customer_id' => $customer_id])
-                   ->with('success', 'Message sent successfully.');
-
+            return response()->json(['message' => 'Message sent successfully.']);
         } catch (\Exception $e) {
-            return redirect()->route('customerMessageSeller', ['cuustomer_id' => $customer_id])
-                   ->withInput()
-                   ->with('error', 'Failed to send message: ' . $e->getMessage());
+            return response()->json(['error' => 'Failed to send message: ' . $e->getMessage()], 500);
         }
     }
 
@@ -269,6 +268,7 @@ class sellerController extends Controller
     public function processSendMessageToAdmin(Request $request, $admin_id)
     {
         $validated = $request->validate([
+            'subject' => 'required|string|max:255',
             'message' => 'required|string|max:500',
         ]);
 
@@ -276,22 +276,21 @@ class sellerController extends Controller
 
         try {
             DB::table('message')->insert([
-                'admin_id' => $admin_id,
-                'seller_id' => $sellerId,
-                'messages' => $validated['message'],
-                'is_read' => 0,
-                'sender_type' => 'seller',
-                'created_at' => now(),
-                'updated_at' => now(),
+                'admin_id'            => $admin_id,
+                'seller_id'           => $sellerId,
+                'customer_id'         => 1,
+                'recipient_seller_id' => $sellerId,
+                'subject'             => $validated['subject'],
+                'messages'            => $validated['message'],
+                'is_read'             => false,
+                'sender_type'         => 'seller',
+                'created_at'          => now(),
+                'updated_at'          => now(),
             ]);
 
-            return redirect()->route('sellerMessageAdmin', ['admin_id' => $admin_id])
-                   ->with('success', 'Message sent successfully.');
-
+            return response()->json(['message' => 'Message sent successfully.']);
         } catch (\Exception $e) {
-            return redirect()->route('sellerMessageAdmin', ['admin_id' => $admin_id])
-                   ->withInput()
-                   ->with('error', 'Failed to send message: ' . $e->getMessage());
+            return response()->json(['error' => 'Failed to send message: ' . $e->getMessage()], 500);
         }
     }
 
@@ -331,4 +330,3 @@ class sellerController extends Controller
         return response()->json(['message' => 'Send message to admin API not implemented']);
     }
 }
-

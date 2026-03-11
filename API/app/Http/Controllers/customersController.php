@@ -485,6 +485,6 @@ public function delete_customerAccount(Request $request, $customer_id)
         $cartItem->delete();
 
         // Return a success response with no content, which is standard for a DELETE request
-        return response()->json(null, 204);
+        return response()->json("Cart item deleted successfully", 204);
     }
 }
