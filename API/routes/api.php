@@ -17,7 +17,7 @@ Route::middleware('auth:sanctum')->group(function () {
     // --- Seller Routes ---
     Route::prefix('seller')->group(function () {
         Route::get('/profile', 'App\\Http\\Controllers\\sellerController@sellerProfile');
-        Route::put('/profile', 'App\\Http\\Controllers\\sellerController@update_sellerProfile');
+        // Route::put('/profile', 'App\\Http\\Controllers\\sellerController@update_sellerProfile');
         // Route::delete('/', 'App\\Http\\Controllers\\sellerController@delete_sellerAccount');
 
         Route::get('/products', 'App\\Http\\Controllers\\productController@listSellerProducts');
