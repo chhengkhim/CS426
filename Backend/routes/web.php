@@ -31,7 +31,7 @@ Route::middleware('auth:admin')->controller(adminController::class)->group(funct
     Route::get('/storePage/{product_id}', 'storePage')->name('storePage');
 
     Route::get('/storePage_fromSellerManagement/{seller_id}', 'storePage_fromSellerManagement')
-    ->name('storePage_fromSellerManagement');  
+    ->name('storePage_fromSellerManagement');
 
     Route::get('customerManagement', 'customerManagement')->name('customerManagement');
 
@@ -69,7 +69,7 @@ Route::middleware('auth:admin')->controller(adminController::class)->group(funct
 
     Route::get('/adminMessageSeller/{seller_id}', 'adminMessageSeller')->name('adminMessageSeller');
 
-    Route::post('/processAdminMessageToSeller/{seller_id}', 'processAdminMessageToSeller')->name('processAdminMessageToSeller');   
+    Route::post('/processAdminMessageToSeller/{seller_id}', 'processAdminMessageToSeller')->name('processAdminMessageToSeller');
 
     Route::post('/deleteProduct/{product_id}', 'deleteProduct')->name('deleteProduct');
 });
