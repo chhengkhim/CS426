@@ -308,8 +308,8 @@ public function allSellerMessages()
         ->where('seller_id', $seller_id)
         ->where('customer_id', $customer_id)
         ->where('sender_type', 'customer')
-        ->where('is_read', 0)
-        ->update(['is_read' => 1]);
+        ->where('is_read', false)
+        ->update(['is_read' => true]);
 
     $messages = DB::table('message')
         ->where('customer_id', $customer_id)
@@ -344,7 +344,7 @@ public function allSellerMessages()
             'customer_id' => $customer_id,
             'seller_id' => $seller_id,
             'messages' => $validated['message'],
-            'is_read' => 0,
+            'is_read' => false,
             'sender_type' => 'seller',
             'created_at' => now(),
             'updated_at' => now(),
@@ -369,8 +369,8 @@ public function allSellerMessages()
         ->where('admin_id', $admin_id)
         ->where('seller_id', $sellerId)
         ->where('sender_type', 'admin')
-        ->where('is_read', 0)
-        ->update(['is_read' => 1]);
+        ->where('is_read', false)
+        ->update(['is_read' => true]);
 
     $messages = DB::table('message')
         ->where('admin_id', $admin_id)
@@ -401,7 +401,7 @@ public function processSendMessageToAdmin(Request $request, $admin_id)
             'admin_id' => $admin_id,
             'seller_id' => $sellerId,
             'messages' => $validated['message'],
-            'is_read' => 0,
+            'is_read' => false,
             'sender_type' => 'seller',
             'created_at' => now(),
             'updated_at' => now(),

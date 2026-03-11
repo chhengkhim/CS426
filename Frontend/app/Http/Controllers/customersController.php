@@ -363,8 +363,8 @@ public function delete_customerAccount(Request $request, $customer_id)
         ->where('customer_id', $customerId)
         ->where('seller_id', $seller_id)
         ->where('sender_type', 'seller')
-        ->where('is_read', 0)
-        ->update(['is_read' => 1]);
+        ->where('is_read', false)
+        ->update(['is_read' => true]);
 
     $messages = DB::table('message')
         ->where('customer_id', $customerId)
@@ -399,7 +399,7 @@ public function delete_customerAccount(Request $request, $customer_id)
             'customer_id' => $customerId,
             'seller_id' => $seller_id,
             'messages' => $validated['message'],
-            'is_read' => 0,
+            'is_read' => false,
             'sender_type' => 'customer',
             'created_at' => now(),
             'updated_at' => now(),
