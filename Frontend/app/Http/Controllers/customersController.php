@@ -340,7 +340,7 @@ public function delete_customerAccount(Request $request, $customer_id)
             'sellers.full_name as seller_name',
             'sellers.seller_profile_img as seller_profile_img',
             DB::raw('MAX(message.created_at) as last_message_time'),
-            DB::raw('(SELECT COUNT(*) FROM message WHERE seller_id = sellers.seller_id AND customer_id = '.$customerId.' AND is_read = 0 AND sender_type = "seller") as unread_count')
+            DB::raw('(SELECT COUNT(*) FROM message WHERE seller_id = sellers.seller_id AND customer_id = '.$customerId.' AND is_read = false AND sender_type = \'seller\') as unread_count')
         )
         ->where('message.customer_id', $customerId)
         ->groupBy('sellers.seller_id', 'sellers.full_name', 'sellers.seller_profile_img')

@@ -266,9 +266,9 @@ public function allSellerMessages()
             'customers.customer_id',
             'customers.full_name as contact_name',
             'customers.customer_profile_images as profile_img',
-            DB::raw('"customer" as contact_type'),
+            DB::raw("'customer' as contact_type"),
             DB::raw('MAX(message.created_at) as last_message_time'),
-            DB::raw('(SELECT COUNT(*) FROM message WHERE customer_id = customers.customer_id AND seller_id = '.$seller_id.' AND is_read = 0 AND sender_type = "customer") as unread_count')
+            DB::raw('(SELECT COUNT(*) FROM message WHERE customer_id = customers.customer_id AND seller_id = '.$seller_id.' AND is_read = false AND sender_type = \'customer\') as unread_count')
         )
         ->where('message.seller_id', $seller_id)
         ->whereNotNull('message.customer_id')
@@ -281,9 +281,9 @@ public function allSellerMessages()
             'admin.admin_id as contact_id',
             'admin.name as contact_name',
             DB::raw('NULL as profile_img'), // Since admin doesn't have profile image
-            DB::raw('"admin" as contact_type'),
+            DB::raw("'admin' as contact_type"),
             DB::raw('MAX(message.created_at) as last_message_time'),
-            DB::raw('(SELECT COUNT(*) FROM message WHERE admin_id = admin.admin_id AND seller_id = '.$seller_id.' AND is_read = 0 AND sender_type = "admin") as unread_count')
+            DB::raw('(SELECT COUNT(*) FROM message WHERE admin_id = admin.admin_id AND seller_id = '.$seller_id.' AND is_read = false AND sender_type = \'admin\') as unread_count')
         )
         ->where('message.seller_id', $seller_id)
         ->whereNotNull('message.admin_id')
