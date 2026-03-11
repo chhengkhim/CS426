@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\productModel; 
+use App\Models\productModel;
 use App\Models\categoryModel;
 use App\Models\sellerModel;
 use App\Models\productimagesModel;
@@ -16,14 +16,14 @@ class productController extends Controller
     public function addProduct(){
 
         $category = DB::select("select * from category order by category_id asc");
-        
+
         return view('addProduct', [
         'category' => $category
     ]);
     }
 
     public function process_addProduct(Request $request){
-        
+
         // Validate input including the image file
         $validated = $request->validate([
     'product_name' => 'required|string',
@@ -56,8 +56,8 @@ class productController extends Controller
 
     // If image exists, store and save it
     if ($request->hasFile('image')) {
-        $path = $request->file('image')->store('Assets/images', 'public');
-        $url = Storage::url($path);
+        $path = $request->file('image')->storePublicly('Assets/products', ['disk' => 'spaces']);
+        $url = Storage::disk('spaces')->url($path);
 
         $image = new productimagesModel();
         $image->img_url = $url;
@@ -65,7 +65,7 @@ class productController extends Controller
         $image->save(); // Save to DB
     }
 
-    
+
     return redirect('seller_Home')->with('success', 'Product added successfully!');
 
 }
@@ -80,7 +80,7 @@ class productController extends Controller
         $category = DB::select("select * from category order by category_id asc");
 
         $images = DB::select("select * from product_images order by img_id asc");
-        
+
 
         return view('seller_Home', [
             'product' => $product,
@@ -98,7 +98,7 @@ class productController extends Controller
         $category = DB::select("select * from category order by category_id asc");
 
         $images = DB::select("select * from product_images where product_id = ?", [$product_id]);
-        
+
 
         return view('updateProduct', [
             'product' => $product,
@@ -154,16 +154,15 @@ class productController extends Controller
         $existingImage = productimagesModel::where('product_id', $product->product_id)->first();
 
         if ($existingImage) {
-            if (Storage::disk('public')->exists(str_replace('/storage/', '', $existingImage->img_url))) {
-                Storage::disk('public')->delete(str_replace('/storage/', '', $existingImage->img_url));
-            }
+            $oldPath = str_replace(Storage::disk('spaces')->url(''), '', $existingImage->img_url);
+            Storage::disk('spaces')->delete(ltrim($oldPath, '/'));
 
             $existingImage->delete();
         }
 
         // Upload new image
-        $path = $request->file('image')->store('Assets/images', 'public');
-        $url = '/storage/' . $path;
+        $path = $request->file('image')->storePublicly('Assets/products', ['disk' => 'spaces']);
+        $url = Storage::disk('spaces')->url($path);
 
         // Use save() instead of create()
         $newImage = new productimagesModel();
@@ -209,10 +208,8 @@ class productController extends Controller
         // 4. Delete product images
         $images = productimagesModel::where('product_id', $product_id)->get();
         foreach ($images as $image) {
-            $path = str_replace('/storage/', '', $image->img_url);
-            if (Storage::disk('public')->exists($path)) {
-                Storage::disk('public')->delete($path);
-            }
+            $oldPath = str_replace(Storage::disk('spaces')->url(''), '', $image->img_url);
+            Storage::disk('spaces')->delete(ltrim($oldPath, '/'));
             $image->delete();
         }
 

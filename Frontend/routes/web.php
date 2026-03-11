@@ -9,19 +9,17 @@ use App\Http\Controllers\orderController;
 use Illuminate\Support\Facades\Auth;
 
 
-Route::get('/', function () {
-    return redirect('/login');
-});
-
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth:seller,customer');
-
-
-Route::middleware('guest:seller,customer')->group(function () {
-    Route::post('/process_check_login', [AuthController::class, 'login'])->name('login');
-
+    Route::get('/', function () {
+        return view('welcome');
+    });
     Route::get('/login', [sellerController::class, 'login'])->name('login');
 
     Route::get('/register', [sellerController::class, 'register'])->name('register');
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth:seller,customer');
+
+
+Route::middleware('guest:seller,customer')->group(function () {
+    Route::post('/process_check_login', [AuthController::class, 'login'])->name('process_login');
 
     Route::post('/process_Registers_seller', [sellerController::class, 'process_Registers_seller']);
 

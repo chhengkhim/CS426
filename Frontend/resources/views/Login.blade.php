@@ -28,7 +28,7 @@
         </div>
       @endif
 
-      <form action="process_check_login" method="POST" class="register-form">
+      <form action="{{ route('process_login') }}" method="POST" class="register-form">
         @csrf
         <div class="form-group">
           <label for="name" class="form-label">Full Name:</label>

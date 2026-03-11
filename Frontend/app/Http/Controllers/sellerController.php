@@ -15,7 +15,7 @@ class sellerController extends Controller
 {
     public function login()
     {
-        return view('login');
+        return view('Login');
     }
 
     public function register()
@@ -67,8 +67,8 @@ class sellerController extends Controller
 
     // Handle file upload
     if ($register->hasFile('seller_profile_img')) {
-        $path = $register->file('seller_profile_img')->store('Assets/profile', 'public');
-        $validate['seller_profile_img'] = '/storage/' . $path;
+        $path = $register->file('seller_profile_img')->storePublicly('Assets/profile', ['disk' => 'spaces']);
+        $validate['seller_profile_img'] = Storage::disk('spaces')->url($path);
     }
 
     // Create the concatenated address
@@ -159,12 +159,13 @@ class sellerController extends Controller
     // Handle profile image
     if ($request->hasFile('seller_profile_img')) {
         if ($seller->seller_profile_img) {
-            $oldPath = str_replace('/storage/', '', $seller->seller_profile_img);
-            Storage::disk('public')->delete($oldPath);
+            // Delete old file from spaces
+            $oldPath = str_replace(Storage::disk('spaces')->url(''), '', $seller->seller_profile_img);
+            Storage::disk('spaces')->delete(ltrim($oldPath, '/'));
         }
 
-        $path = $request->file('seller_profile_img')->store('Assets/profile', 'public');
-        $validate['seller_profile_img'] = '/storage/' . $path;
+        $path = $request->file('seller_profile_img')->storePublicly('Assets/profile', ['disk' => 'spaces']);
+        $validate['seller_profile_img'] = Storage::disk('spaces')->url($path);
     } else {
         $validate['seller_profile_img'] = $seller->seller_profile_img;
     }
@@ -240,8 +241,8 @@ class sellerController extends Controller
 
         // Delete seller profile image
         if ($seller->seller_profile_img) {
-            $oldPath = str_replace('storage/', '', $seller->seller_profile_img);
-            Storage::disk('public')->delete($oldPath);
+            $oldPath = str_replace(Storage::disk('spaces')->url(''), '', $seller->seller_profile_img);
+            Storage::disk('spaces')->delete(ltrim($oldPath, '/'));
         }
 
         // Finally delete the seller account
