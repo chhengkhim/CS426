@@ -2,9 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\sellerModel;
+use App\Models\customersModel;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,11 +14,22 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        // --- Create Admin ---
+        $this->call(AdminSeeder::class);
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        // --- Create a Test Seller ---
+        $seller = new sellerModel();
+        $seller->full_name = 'Test Seller';
+        $seller->seller_email = 'seller@example.com';
+        $seller->password = Hash::make('password');
+        $seller->store_name = 'The Test Store';
+        $seller->save();
+
+        // --- Create a Test Customer ---
+        $customer = new customersModel();
+        $customer->full_name = 'Test Customer';
+        $customer->customers_email = 'customer@example.com';
+        $customer->password = Hash::make('password');
+        $customer->save();
     }
 }

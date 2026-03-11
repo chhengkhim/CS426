@@ -658,8 +658,10 @@ public function processCartCheckout(Request $request)
         ->where('cartitem.customer_id', $customer_id)
         ->select(
             'cartitem.*',
+            'product.product_name',
             'product.product_price',
-            'product.stock_quantity'
+            'product.stock_quantity',
+            'product.seller_id'
         )
         ->get();
 
@@ -694,6 +696,7 @@ public function processCartCheckout(Request $request)
             $orderItem = new orderItemModel();
             $orderItem->order_id = $order->order_id;
             $orderItem->product_id = $item->product_id;
+            $orderItem->seller_id = $item->seller_id;
             $orderItem->quantity = $item->quantity;
             $orderItem->price_at_purchase = $item->product_price;
             $orderItem->save();

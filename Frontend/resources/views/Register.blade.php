@@ -76,7 +76,7 @@
             <label for="store_name" class="form-label">Store Name:</label>
             <input type="text" id="store_name" name="store_name" class="form-control" />
           </div>
-        
+
           <div class="form-group">
             <label for="address_line" class="form-label">Address:</label>
             <input type="text" id="address_line" name="address_line" class="form-control" >
@@ -160,7 +160,7 @@
         customerFields.style.display = 'none';
         sellerImageDiv.style.display = 'none';
         customerImageDiv.style.display = 'none';
-        
+
         sellerImageInput.removeAttribute('required');
         customerImageInput.removeAttribute('required');
         storeNameInput.removeAttribute('required');
@@ -205,7 +205,7 @@
       }
 
       roleSelect.addEventListener('change', updateFormBasedOnRole);
-      
+
       // Call once on page load to set initial state based on default select option
       updateFormBasedOnRole();
 

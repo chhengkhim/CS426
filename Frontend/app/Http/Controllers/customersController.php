@@ -5,7 +5,7 @@ use App\Models\customersModel;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\sellerModel; 
+use App\Models\sellerModel;
 use Illuminate\Support\Facades\Storage;
 
 
@@ -45,7 +45,7 @@ class customersController extends Controller
     ]);
 }
 
-    /** 
+    /**
     public function register(Request $register)
     {
 
@@ -79,19 +79,17 @@ class customersController extends Controller
 }
 
         if ($register->hasFile('customer_profile_images')) {
-    $path = $register->file('customer_profile_images')->store('Assets/profile', 'public');
-    $validate['customer_profile_images'] = '/storage/' . $path;
-}
+            $path = $register->file('customer_profile_images')->storePublicly('Assets/profile', ['disk' => 'spaces']);
+            $validate['customer_profile_images'] = Storage::disk('spaces')->url($path);
+        }
 
         $validate['password'] = bcrypt($validate['password']);
-
 
         $customer = customersModel::create($validate);
 
         Auth::login($customer);
 
-
-        return redirect('/login');
+        return redirect('/Home');
     }
 
     /**
@@ -156,21 +154,18 @@ class customersController extends Controller
         ];
 
 
-        if ($request->filled('password')) {
-        $rules['password'] = 'required|string|min:8|confirmed';
-    }
-
         $validate = $request->validate($rule);
         $customer = customersModel::find(Auth::id());
 
         if ($request->hasFile('customer_profile_images')) {
         if ($customer->customer_profile_images) {
-            $oldPath = str_replace('/storage/', '', $customer->customer_profile_images);
-            Storage::disk('public')->delete($oldPath);
+            // Delete old file from spaces
+            $oldPath = str_replace(Storage::disk('spaces')->url(''), '', $customer->customer_profile_images);
+            Storage::disk('spaces')->delete(ltrim($oldPath, '/'));
         }
 
-        $path = $request->file('customer_profile_images')->store('Assets/profile', 'public');
-        $validate['customer_profile_images'] = '/storage/' . $path;
+        $path = $request->file('customer_profile_images')->storePublicly('Assets/profile', ['disk' => 'spaces']);
+        $validate['customer_profile_images'] = Storage::disk('spaces')->url($path);
     } else {
         $validate['customer_profile_images'] = $customer->customer_profile_images;
     }
@@ -231,8 +226,8 @@ public function delete_customerAccount(Request $request, $customer_id)
 
         // 5. Delete the customer's profile image if it exists
         if ($customer->customer_profile_images) {
-            $oldPath = str_replace('/storage/', '', $customer->customer_profile_images);
-            Storage::disk('public')->delete($oldPath);
+            $oldPath = str_replace(Storage::disk('spaces')->url(''), '', $customer->customer_profile_images);
+            Storage::disk('spaces')->delete(ltrim($oldPath, '/'));
         }
 
         // 6. Finally delete the customer record
@@ -275,7 +270,7 @@ public function delete_customerAccount(Request $request, $customer_id)
         ->where('product.product_id', $product_id)
         ->select('sellers.*')
         ->first();
-    
+
     if(!$seller) {
         return back()->with('error', 'Seller not found for this product');
     }
@@ -294,12 +289,12 @@ public function delete_customerAccount(Request $request, $customer_id)
     ]);
 }
 
-    
+
 
     public function viewSpecificCategoryProduct(Request $request)
 {
     $category_id = $request->input('category_id');
-    
+
     // Get the selected category name
     $selectedCategory = DB::table('category')
                         ->where('category_id', $category_id)
@@ -336,7 +331,7 @@ public function delete_customerAccount(Request $request, $customer_id)
     public function allcustomerMessages()
 {
     $customerId = Auth::id();
-    
+
     // Get all unique sellers the customer has messaged with
     $conversations = DB::table('message')
         ->join('sellers', 'message.seller_id', '=', 'sellers.seller_id')
@@ -394,7 +389,7 @@ public function delete_customerAccount(Request $request, $customer_id)
     public function processSendMessageToSeller(Request $request, $seller_id)
 {
     $validated = $request->validate([
-        'message' => 'required|string|max:500', 
+        'message' => 'required|string|max:500',
     ]);
 
     $customerId = Auth::id();
@@ -412,7 +407,7 @@ public function delete_customerAccount(Request $request, $customer_id)
 
         return redirect()->route('customerMessageSeller', ['seller_id' => $seller_id])
                ->with('success', 'Message sent successfully.');
-        
+
     } catch (\Exception $e) {
         return redirect()->route('customerMessageSeller', ['seller_id' => $seller_id])
                ->withInput()
@@ -423,7 +418,7 @@ public function delete_customerAccount(Request $request, $customer_id)
     public function customer_viewReviews($order_id)
 {
     $customer_id = Auth::id();
-    
+
     // Verify the order belongs to the authenticated customer
     $order = DB::table('orders')
         ->where('order_id', $order_id)
@@ -440,8 +435,8 @@ public function delete_customerAccount(Request $request, $customer_id)
         ->leftJoin('product_images', function($join) {
             $join->on('product.product_id', '=', 'product_images.product_id')
                  ->whereRaw('product_images.img_id = (
-                     SELECT MIN(img_id) 
-                     FROM product_images 
+                     SELECT MIN(img_id)
+                     FROM product_images
                      WHERE product_id = product.product_id
                  )');
         })
