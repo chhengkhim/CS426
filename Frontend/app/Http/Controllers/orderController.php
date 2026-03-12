@@ -416,7 +416,7 @@ public function viewOrderReviews($order_id)
         'review.comment',
         'review.created_at as review_date',
         'review.customer_id',
-        DB::raw('IF(review.customer_id IS NULL, "Former Customer", customers.full_name) as customer_name')
+        DB::raw("CASE WHEN review.customer_id IS NULL THEN 'Former Customer' ELSE customers.full_name END as customer_name")
     )
     ->get();
 
