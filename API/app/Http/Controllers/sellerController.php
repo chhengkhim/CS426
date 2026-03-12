@@ -171,7 +171,7 @@ class sellerController extends Controller
     public function allSellerMessages()
     {
         $sellerId = auth()->id();
-        $messages = \App\Models\messageModel::with('customer')->where('recipient_seller_id', $sellerId)->get();
+        $messages = \App\Models\messageModel::with('customer')->where('seller_id', $sellerId)->get();
         return response()->json([
             'message' => 'Messages retrieved successfully',
             'data' => $messages
