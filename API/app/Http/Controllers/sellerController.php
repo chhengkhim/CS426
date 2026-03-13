@@ -171,7 +171,7 @@ class sellerController extends Controller
     public function allSellerMessages()
     {
         $sellerId = auth()->id();
-        $messages = \App\Models\messageModel::with('customer')->where('recipient_seller_id', $sellerId)->get();
+        $messages = \App\Models\messageModel::with('customer')->where('seller_id', $sellerId)->get();
         return response()->json([
             'message' => 'Messages retrieved successfully',
             'data' => $messages
@@ -222,7 +222,6 @@ class sellerController extends Controller
             DB::table('message')->insert([
                 'customer_id'         => $customer_id,
                 'seller_id'           => $seller_id,
-                'recipient_seller_id' => $seller_id,
                 'subject'             => $validated['subject'],
                 'messages'            => $validated['message'],
                 'is_read'             => false,
@@ -279,7 +278,6 @@ class sellerController extends Controller
                 'admin_id'            => $admin_id,
                 'seller_id'           => $sellerId,
                 'customer_id'         => 1,
-                'recipient_seller_id' => $sellerId,
                 'subject'             => $validated['subject'],
                 'messages'            => $validated['message'],
                 'is_read'             => false,
