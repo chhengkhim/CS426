@@ -87,9 +87,7 @@ class customersController extends Controller
 
         $customer = customersModel::create($validate);
 
-        Auth::login($customer);
-
-        return redirect('/Home');
+        return redirect()->route('login')->with('success', 'Registration successful! Please log in.');
     }
 
     /**

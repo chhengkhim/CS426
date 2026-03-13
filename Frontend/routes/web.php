@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 
     Route::get('/', function () {
-        return view('welcome');
+        return redirect()->route('login');
     });
     Route::get('/login', [sellerController::class, 'login'])->name('login');
 

@@ -82,8 +82,7 @@ class sellerController extends Controller
 
     try {
         $seller = sellerModel::create($validate);
-        Auth::login($seller);
-        return redirect('/seller_Home')->with('success', 'Registration successful!');
+        return redirect()->route('login')->with('success', 'Registration successful! Please log in.');
     } catch (\Exception $e) {
         return back()->withErrors(['error' => 'Registration failed: ' . $e->getMessage()]);
     }
