@@ -72,11 +72,11 @@
   <main class="hc-main">
     <section class="hc-hero" style="display: flex; justify-content: center; align-items: center; min-height: 400px; background: none;">
       <div class="hc-hero-img" style="width: 90vw; max-width: 1400px; background: none;">
-        <img src="asset/img/group 7.png" alt="Hero background" style="width: 100%; height: auto; border-radius: 2rem; box-shadow: 0 4px 24px rgba(0,0,0,0.12); display: block; background: none;" />
+        <img src="asset/img/group-7.png" alt="Hero background" style="width: 100%; height: auto; border-radius: 2rem; box-shadow: 0 4px 24px rgba(0,0,0,0.12); display: block; background: none;" />
       </div>
     </section>
     <section class="hc-profile-section" style="display: flex; justify-content: center; align-items: center; min-height: 350px; background: transparent;">
-      <img src="asset/img/group 8.png" alt="Artisan weaving" style="max-width: 100%; height: auto; border-radius: 2rem; box-shadow: 0 4px 24px rgba(0,0,0,0.12); background: transparent;" />
+      <img src="asset/img/group-8.png" alt="Artisan weaving" style="max-width: 100%; height: auto; border-radius: 2rem; box-shadow: 0 4px 24px rgba(0,0,0,0.12); background: transparent;" />
     </section>
     <section class="hc-products-section">
       <h2 class="hc-section-title" style="font-family: 'Georgia', serif; font-size: 2.5rem; text-align: center; margin-bottom: 2rem; letter-spacing: 1px; border-bottom: none;">SHOP NOW</h2>
