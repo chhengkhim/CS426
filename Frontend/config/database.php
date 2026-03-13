@@ -40,31 +40,21 @@ return [
         ],
 
         'mysql' => [
-            'driver'    => 'mysql',
-            'read'      => [
-                'host' => [
-                    env('DB_SLAVE1_HOST', '127.0.0.1'),
-                    env('DB_SLAVE2_HOST', '127.0.0.1'),
-                ],
-            ],
-            'write' => [
-                'host' => [
-                    env('DB_HOST', '127.0.0.1'),
-                ],
-            ],
-            'sticky'    => true,
-            'port'      => env('DB_PORT', '3306'),
-            'database'  => env('DB_DATABASE', 'laravel'),
-            'username'  => env('DB_USERNAME', 'root'),
-            'password'  => env('DB_PASSWORD', ''),
+            'driver' => 'mysql',
+            'url' => env('DB_URL'),
+            'host' => env('DB_HOST', '127.0.0.1'),
+            'port' => env('DB_PORT', '3306'),
+            'database' => env('DB_DATABASE', 'laravel'),
+            'username' => env('DB_USERNAME', 'root'),
+            'password' => env('DB_PASSWORD', ''),
             'unix_socket' => env('DB_SOCKET', ''),
-            'charset'   => env('DB_CHARSET', 'utf8mb4'),
+            'charset' => env('DB_CHARSET', 'utf8mb4'),
             'collation' => env('DB_COLLATION', 'utf8mb4_unicode_ci'),
-            'prefix'    => '',
+            'prefix' => '',
             'prefix_indexes' => true,
-            'strict'    => true,
-            'engine'    => null,
-            'options'   => extension_loaded('pdo_mysql') ? array_filter([
+            'strict' => true,
+            'engine' => null,
+            'options' => extension_loaded('pdo_mysql') ? array_filter([
                 PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
             ]) : [],
         ],
@@ -89,13 +79,37 @@ return [
             ]) : [],
         ],
 
+        // 'pgsql' => [
+        //     'driver' => 'pgsql',
+        //     'url' => env('DB_URL'),
+        //     'host' => env('DB_HOST', '127.0.0.1'),
+        //     'port' => env('DB_PORT', '5432'),
+        //     'database' => env('DB_DATABASE', 'laravel'),
+        //     'username' => env('DB_USERNAME', 'root'),
+        //     'password' => env('DB_PASSWORD', ''),
+        //     'charset' => env('DB_CHARSET', 'utf8'),
+        //     'prefix' => '',
+        //     'prefix_indexes' => true,
+        //     'search_path' => 'public',
+        //     'sslmode' => 'prefer',
+        // ],
         'pgsql' => [
             'driver' => 'pgsql',
-            'url' => env('DB_URL'),
-            'host' => env('DB_HOST', '127.0.0.1'),
+            'read' => [
+                'host' => [
+                    env('DB_READ1_HOST', '157.230.45.176'),
+                    env('DB_READ2_HOST', '143.198.88.115'),
+                ],
+            ],
+            'write' => [
+                'host' => [
+                    env('DB_WRITE_HOST', '178.128.103.122'),
+                ],
+            ],
+            'sticky' => true,
             'port' => env('DB_PORT', '5432'),
-            'database' => env('DB_DATABASE', 'laravel'),
-            'username' => env('DB_USERNAME', 'root'),
+            'database' => env('DB_DATABASE', 'handcraft'),
+            'username' => env('DB_USERNAME', 'db_admin'),
             'password' => env('DB_PASSWORD', ''),
             'charset' => env('DB_CHARSET', 'utf8'),
             'prefix' => '',
